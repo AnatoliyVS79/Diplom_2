@@ -21,7 +21,7 @@ public class User {
         // с помощью библиотеки RandomStringUtils генерируем имя пользователя
         String userName = RandomStringUtils.randomAlphabetic(10);
 
-        return  new User(userLogin, userPassword, userName)
+        return  new User(userLogin, userPassword, userName);
     }
 
     @Override
