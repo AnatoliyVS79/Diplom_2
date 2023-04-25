@@ -4,10 +4,8 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
-import static ru.praktikum.stellarburgers.model.BaseData.BASE_URL;
-import static ru.praktikum.stellarburgers.model.BaseData.getBaseSpec;
 
-public class UserRequest {
+public class UserRequest extends BaseData{
     public static final String USER_PATH = BASE_URL + "auth/";
 
     @Step("Создание пользователя {user}")
