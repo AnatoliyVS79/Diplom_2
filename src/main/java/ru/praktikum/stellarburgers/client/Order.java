@@ -2,9 +2,8 @@ package ru.praktikum.stellarburgers.client;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.junit.runner.Request;
 import ru.praktikum.stellarburgers.model.BaseData;
-import ru.praktikum.stellarburgers.model.Token;
+import ru.praktikum.stellarburgers.model.Tokens;
 
 import static io.restassured.RestAssured.given;
 
@@ -31,7 +30,7 @@ public class Order extends BaseData {
     public Response createOrderAuthorized(){
         return given()
                 .spec(getBaseSpec())
-                .auth().oauth2(Token.getAccessToken())
+                .auth().oauth2(Tokens.getAccessToken())
                 .body(json)
                 .port(ORDER_PATH);
     }

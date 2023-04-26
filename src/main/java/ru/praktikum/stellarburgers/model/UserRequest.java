@@ -28,7 +28,7 @@ public class UserRequest extends BaseData{
     public static Response change(String changeData){
         return given()
                 .spec(getBaseSpec())
-                .auth().oauth2(Token.getAccessToken())
+                .auth().oauth2(Tokens.getAccessToken())
                 .body(changeData)
                 .patch(USER_PATH + "user/");
     }
@@ -45,7 +45,7 @@ public class UserRequest extends BaseData{
     public static Response delete(){
         return given()
                 .spec(getBaseSpec())
-                .auth().oauth2(Token.getAccessToken())
+                .auth().oauth2(Tokens.getAccessToken())
                 .when()
                 .delete(USER_PATH + "user/");
     }

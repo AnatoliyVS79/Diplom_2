@@ -1,6 +1,6 @@
 package ru.praktikum.stellarburgers.model;
 
-public class Token {
+public class Tokens {
     private static  String accessToken;
 
     public static String getAccessToken() {
@@ -8,6 +8,6 @@ public class Token {
     }
 
     public static void setAccessToken(String accessToken) {
-        Token.accessToken = accessToken;
+        Tokens.accessToken = accessToken;
     }
 }
