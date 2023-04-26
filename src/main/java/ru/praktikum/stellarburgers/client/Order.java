@@ -39,6 +39,7 @@ public class Order extends BaseData {
     public Response getUserOrderAuthorized(){
         return given()
                 .spec(getBaseSpec())
+                .auth().oauth2(Tokens.getAccessToken())
                 .get(ORDER_PATH);
     }
 
