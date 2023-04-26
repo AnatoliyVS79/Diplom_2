@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 
 public class Order extends BaseData {
     public static final String ORDER_PATH = BASE_URL + "orders/";
-    String json;
+    public String json;
     IngredientList ingredientList = new IngredientList();
 
     public String ingredientCreate(){
