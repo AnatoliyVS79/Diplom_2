@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7676d61-d531-4f01-b398-3be9d00a4020" name="Changes" comment="added Order.java">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/NewUserTest.java" afterDir="false" />
+    <list default="true" id="f7676d61-d531-4f01-b398-3be9d00a4020" name="Changes" comment="added NewUserTest.java">
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/LoginUserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/client/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/client/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/Tokens.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/UserRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +47,22 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.NewUserTest">
+    <configuration name="LoginUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.stellarburgers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.stellarburgers" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.stellarburgers.LoginUserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NewUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Diplom_2" />
       <extension name="coverage">
@@ -68,6 +81,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.NewUserTest" />
+        <item itemvalue="JUnit.LoginUserTest" />
       </list>
     </recent_temporary>
   </component>
@@ -115,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682449908117</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added NewUserTest.java">
+      <created>1682496120699</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682496120700</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -124,6 +145,7 @@
     <MESSAGE value="added UserLogin.java  UserRequest.java" />
     <MESSAGE value="added Data.java IngredientList.java" />
     <MESSAGE value="added Order.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Order.java" />
+    <MESSAGE value="added NewUserTest.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="added NewUserTest.java" />
   </component>
 </project>

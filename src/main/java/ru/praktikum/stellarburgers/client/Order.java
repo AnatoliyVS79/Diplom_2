@@ -18,21 +18,21 @@ public class Order extends BaseData {
         return json;
     }
 
-    @Step("Создание заказа неавторизованного пользователя")
-    public Response createOrderUnauthorized(){
+    @Step("Создание заказа неавторизированного пользователя")
+    public Response createOrderUnauthorized() {
         return given()
                 .spec(getBaseSpec())
                 .body(json)
-                .port(ORDER_PATH);
+                .post(ORDER_PATH);
     }
 
     @Step("Создание заказа авторизированного пользователя")
-    public Response createOrderAuthorized(){
+    public Response createOrderAuthorized() {
         return given()
                 .spec(getBaseSpec())
                 .auth().oauth2(Tokens.getAccessToken())
                 .body(json)
-                .port(ORDER_PATH);
+                .post(ORDER_PATH);
     }
 
     @Step("Вывод заказов авторизаванного пользователя")
