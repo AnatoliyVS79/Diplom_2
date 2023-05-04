@@ -6,27 +6,28 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ru.praktikum.stellarburgers.client.Order;
-import ru.praktikum.stellarburgers.model.Tokens;
+import ru.praktikum.stellarburgers.client.UserRequest;
 import ru.praktikum.stellarburgers.model.User;
-import ru.praktikum.stellarburgers.model.UserRequest;
-import static org.hamcrest.Matchers.*;
+import ru.praktikum.stellarburgers.model.UserLogin;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class GetUserOrderTest {
     private UserRequest userRequest;
     private User user;
     private Order order;
     String accessToken;
+    private UserLogin userLogin;
 
     @Before //создаем случайного пользователя для возможности авторизированного запроса
     public void setUp() {
         order = new Order();
         userRequest = new UserRequest();
-        user = User.createUser();
-        String accessTokenFull = userRequest.create(user.toString()).then().extract().body().path("accessToken");
-        accessToken = accessTokenFull.substring(7, 178);
-        if (accessToken != null) {
-            Tokens.setAccessToken(accessToken);
-        }
+        user = new User().createUser();
+        userRequest.create(user.toString());
+        userLogin = new UserLogin();
+        userRequest.saveToken(userRequest, userLogin, user);
     }
 
     @After //удаляем созданного пользователя
@@ -50,7 +51,7 @@ public class GetUserOrderTest {
     @DisplayName("Вывод списка заказов неавторизованного пользователя")
     @Description("Тест проверяет вывод ошибки и сообщение о необходимости авторизации при запросе списка заказов " +
             "неавторизованного пользователя")
-    public void getUnauthorizedUserOrderTest(){
+    public void getUnauthorizedUserOrderTest() {
         order.getUserOrderUnauthorized().then().assertThat()
                 .statusCode(401)
                 .body("success", equalTo(false))

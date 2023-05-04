@@ -11,28 +11,31 @@ import org.junit.Test;
 import ru.praktikum.stellarburgers.model.Tokens;
 import ru.praktikum.stellarburgers.model.User;
 import ru.praktikum.stellarburgers.model.UserLogin;
-import ru.praktikum.stellarburgers.model.UserRequest;
+import ru.praktikum.stellarburgers.client.UserRequest;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class NewUserTest {
     private UserRequest userRequest;
     private User user;
+    private  UserLogin userLogin;
 
     @Before //создание случайного пользователя
     public void setUp(){
         userRequest = new UserRequest();
-        user = User.createUser();
+        user = new User().createUser();
+
     }
 
     @After //удаление созданного пользователя
     public void tearDown(){
-        JsonElement accessTokenFull = UserRequest.login(UserLogin.from(user).toString()).thenReturn()
+        userLogin =new UserLogin();
+        JsonElement accessTokenFull = userRequest.login(userLogin.from(user).toString()).thenReturn()
                 .body().as(JsonObject.class).get("accessToken");
         if (accessTokenFull != null){
             String accessToken = accessTokenFull.toString().substring(8, 179);
             Tokens.setAccessToken(accessToken);
-            UserRequest.delete().then().statusCode(202);
+            userRequest.delete().then().statusCode(202);
         }
     }
 
@@ -60,8 +63,8 @@ public class NewUserTest {
     @DisplayName("Создание пользователя без указания поля password")
     @Description("Тест проверяет появление ошибки в случае отсутствия обязательного поля password")
     public void userNotBeCreateWithoutRequiredFieldPassword(){
-        User user2 = new User(user.login, "", user.name);
-        userRequest.create(user2.toString()).then().assertThat()
+        User user = new User("testLogin", "", "testName");
+        userRequest.create(user.toString()).then().assertThat()
                 .statusCode(403)
                 .body("message", equalTo("Email, password and name are required fields"));
     }
@@ -70,8 +73,8 @@ public class NewUserTest {
     @DisplayName("Создание пользователя без указания поля email")
     @Description("Тест проверяет появление ошибки в случае отсутствия обязательного поля email")
     public void userNotBeCreateWithoutRequiredFieldLogin() {
-        User user2 = new User("", user.password, user.name);
-        userRequest.create(user2.toString()).then().assertThat()
+        User user = new User("", "testPassword", "testName");
+        userRequest.create(user.toString()).then().assertThat()
                 .statusCode(403)
                 .body("message", Matchers.equalTo("Email, password and name are required fields"));
     }
@@ -80,8 +83,8 @@ public class NewUserTest {
     @DisplayName("Создание пользователя без указания поля name")
     @Description("Тест проверяет появление ошибки в случае отсутствия обязательного поля name")
     public void userNotBeCreateWithoutRequiredFieldName() {
-        User user2 = new User(user.login, user.password, "");
-        userRequest.create(user2.toString()).then().assertThat()
+        User user = new User("testUser", "testPassword", "");
+        userRequest.create(user.toString()).then().assertThat()
                 .statusCode(403)
                 .body("message", Matchers.equalTo("Email, password and name are required fields"));
     }

@@ -1,4 +1,4 @@
-package ru.praktikum.stellarburgers.client;
+package ru.praktikum.stellarburgers.model;
 
 public class Data {
     private String _id;

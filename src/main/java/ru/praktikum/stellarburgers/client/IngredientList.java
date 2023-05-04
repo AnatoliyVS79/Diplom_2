@@ -2,14 +2,17 @@ package ru.praktikum.stellarburgers.client;
 
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.RandomUtils;
-import ru.praktikum.stellarburgers.model.BaseData;
+import ru.praktikum.stellarburgers.model.Data;
 
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
 public class IngredientList extends BaseData {
+    String pp = ",";
+    String orderRequest = "\"ingredients\":[";
     private List<Data> data;
+
 
     public List<Data> getData() {
         return data;
@@ -19,19 +22,20 @@ public class IngredientList extends BaseData {
         this.data = data;
     }
 
+
     @Step("Вывод списка всех ингредиентов в виде объекта {IngredientList}")
     public IngredientList getAllIngredients(){
         IngredientList ingredientList = given()
                 .spec(getBaseSpec())
-                .get(BASE_URL + "ingredients/")
+                .get( "api/ingredients/")
                 .body()
                 .as(IngredientList.class);
         return ingredientList;
     }
 
-    String pp = ",";
-    String orderRequest = "\"ingredients\":[";
+
     public void ingredientRequestCreate(){
+
         IngredientList ingredientList = new IngredientList();
         ingredientList = ingredientList.getAllIngredients();
         int randomCountIngredient = RandomUtils.nextInt(1, 4);

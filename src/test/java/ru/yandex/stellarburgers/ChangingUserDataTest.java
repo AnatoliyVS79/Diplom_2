@@ -4,36 +4,35 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
+import io.restassured.response.ValidatableResponse;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ru.praktikum.stellarburgers.client.UserRequest;
 import ru.praktikum.stellarburgers.model.Tokens;
 import ru.praktikum.stellarburgers.model.User;
 import ru.praktikum.stellarburgers.model.UserLogin;
-import ru.praktikum.stellarburgers.model.UserRequest;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class ChangingUserDataTest {
     private UserRequest userRequest;
     private User user;
-    private String accessToken;
+    private UserLogin userLogin;
 
     @Before //создаем случайного пользователя
-    public void setUp(){
-        userRequest =new UserRequest();
-        user = User.createUser();
+    public void setUp() {
+        userRequest = new UserRequest();
+        user = new User().createUser();
         userRequest.create(user.toString());
-        JsonElement accessTokenFull = userRequest.login(UserLogin.from(user).toString()).thenReturn()
-                .body().as(JsonObject.class).get("accessToken");
-        accessToken = accessTokenFull.toString().substring(8, 179);
-        Tokens.setAccessToken(accessToken);
+        userLogin = new UserLogin();
+        userRequest.saveToken(userRequest, userLogin, user);
     }
 
     @After //удаляем созданного пользователя
-    public void teamDown(){
-        if (accessToken != null){
+    public void teamDown() {
+        if (userRequest != null) {
             userRequest.delete().then().statusCode(202);
         }
     }
@@ -41,9 +40,9 @@ public class ChangingUserDataTest {
     @Test
     @DisplayName("Изменение email авторизированного пользователя")
     @Description("Тест проверяет возможность изменения email авторизированного пользователя")
-    public void userChangeEmail(){
+    public void userChangeEmail() {
         String changeData = "{\"" + "email" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) +
-                user.login + "\"}";
+                user.getLogin() + "\"}";
         userRequest.change(changeData).then().assertThat()
                 .statusCode(200)
                 .body("success", equalTo(true));
@@ -52,9 +51,9 @@ public class ChangingUserDataTest {
     @Test
     @DisplayName("Изменение пароля авторизированного пользователя")
     @Description("Тест проверяет возможность изменения пароля авторизированного пользователя")
-    public void userChangePassword(){
+    public void userChangePassword() {
         String changeData = "{\"" + "password" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) +
-                user.password + "\"}";
+                user.getPassword() + "\"}";
         userRequest.change(changeData).then().assertThat()
                 .statusCode(200)
                 .body("success", equalTo(true));
@@ -63,9 +62,9 @@ public class ChangingUserDataTest {
     @Test
     @DisplayName("Изменение имени авторизированного пользователя")
     @Description("Тест проверяет возможность изменения имени авторизированного пользователя")
-    public void userChangeName(){
-        String changeData = "{\"" + "name" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) + user.name + "\"}";
-        UserRequest.change(changeData).then().assertThat()
+    public void userChangeName() {
+        String changeData = "{\"" + "name" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) + user.getName() + "\"}";
+        userRequest.change(changeData).then().assertThat()
                 .statusCode(200)
                 .body("success", equalTo(true));
     }
@@ -73,8 +72,8 @@ public class ChangingUserDataTest {
     @Test
     @DisplayName("Изменение email неавторизированного пользователя")
     @Description("Тест проверяет появление ошибки при попытке изменения email неавторизированного пользователя")
-    public void changeTheEmailOfAnUnauthorizedUser(){
-        String changeData = "{\"" + "email" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) + user.login + "\"}";
+    public void changeTheEmailOfAnUnauthorizedUser() {
+        String changeData = "{\"" + "email" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) + user.getLogin() + "\"}";
         userRequest.changeUnauthorized(changeData).then().assertThat()
                 .statusCode(401)
                 .body("message", equalTo("You should be authorised"));
@@ -83,8 +82,8 @@ public class ChangingUserDataTest {
     @Test
     @DisplayName("Изменение пароля неавторизированного пользователя")
     @Description("Тест проверяет появление ошибки при попытке изменения пароля неавторизированного пользователя")
-    public void changeThePasswordOfAnUnauthorizedUser(){
-        String changeData = "{\"" + "password" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) + user.password + "\"}";
+    public void changeThePasswordOfAnUnauthorizedUser() {
+        String changeData = "{\"" + "password" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) + user.getPassword() + "\"}";
         userRequest.changeUnauthorized(changeData).then().assertThat()
                 .statusCode(401)
                 .body("message", equalTo("You should be authorised"));
@@ -93,8 +92,8 @@ public class ChangingUserDataTest {
     @Test
     @DisplayName("Изменение имени неавторизированного пользователя")
     @Description("Тест проверяет появление ошибки при попытке изменения имени неавторизированного пользователя")
-    public void changeTheNameOfAnUnauthorizedUser(){
-        String changeData = "{\"" + "name" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) + user.name + "\"}";
+    public void changeTheNameOfAnUnauthorizedUser() {
+        String changeData = "{\"" + "name" + "\":" + "\"" + RandomStringUtils.randomAlphabetic(3) + user.getName() + "\"}";
         userRequest.changeUnauthorized(changeData).then().assertThat()
                 .statusCode(401)
                 .body("message", equalTo("You should be authorised"));

@@ -2,13 +2,12 @@ package ru.praktikum.stellarburgers.client;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import ru.praktikum.stellarburgers.model.BaseData;
 import ru.praktikum.stellarburgers.model.Tokens;
 
 import static io.restassured.RestAssured.given;
 
 public class Order extends BaseData {
-    public static final String ORDER_PATH = BASE_URL + "orders/";
+    public static final String ORDER_PATH = "api/orders/";
     public String json;
     IngredientList ingredientList = new IngredientList();
 

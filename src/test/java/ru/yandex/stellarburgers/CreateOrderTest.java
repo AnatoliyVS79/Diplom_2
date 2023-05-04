@@ -9,7 +9,8 @@ import ru.praktikum.stellarburgers.client.IngredientList;
 import ru.praktikum.stellarburgers.client.Order;
 import ru.praktikum.stellarburgers.model.Tokens;
 import ru.praktikum.stellarburgers.model.User;
-import ru.praktikum.stellarburgers.model.UserRequest;
+import ru.praktikum.stellarburgers.client.UserRequest;
+import ru.praktikum.stellarburgers.model.UserLogin;
 
 import static org.hamcrest.CoreMatchers.*;
 
@@ -18,21 +19,20 @@ public class CreateOrderTest {
     private User user;
     private Order order;
     String accessToken;
+    private UserLogin userLogin;
 
     @Before  //создаем случайного пользователя для возможности авторизированного запроса
     public void setUp(){
         order = new Order();
         userRequest = new UserRequest();
-        user = User.createUser();
-        String accessTokenFull = userRequest.create(user.toString()).then().extract().body().path("accessToken");
-        accessToken = accessTokenFull.substring(7,178);
-        if (accessToken != null){
-            Tokens.setAccessToken(accessToken);
-        }
+        user =new  User().createUser();
+        userRequest.create(user.toString());
+        userLogin = new UserLogin();
+        userRequest.saveToken(userRequest, userLogin, user);
     }
 
     @After  //удаляем созданного пользователя
-    public void teamDown(){
+    public void tearDown(){
         if (accessToken != null){
             userRequest.delete().then().statusCode(202);
         }
