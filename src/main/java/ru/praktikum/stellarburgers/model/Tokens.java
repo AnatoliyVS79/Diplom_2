@@ -10,4 +10,7 @@ public class Tokens {
     public static void setAccessToken(String accessToken) {
         Tokens.accessToken = accessToken;
     }
+    public static void flush() {
+        setAccessToken(null);
+    }
 }

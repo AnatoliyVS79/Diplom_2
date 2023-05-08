@@ -1,10 +1,10 @@
 package ru.praktikum.stellarburgers.model;
 
-public class UserRegResponse {
-    private  boolean success;
+public class UserRegisterResponse {
+    private boolean success;
     private String accessToken;
-    private  String refreshToken;
-    private  User user;
+    private String refreshToken;
+    private User user;
 
     public boolean isSuccess() {
         return success;
@@ -38,3 +38,4 @@ public class UserRegResponse {
         this.user = user;
     }
 }
+

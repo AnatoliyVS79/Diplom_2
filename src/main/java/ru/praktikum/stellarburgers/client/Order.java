@@ -2,51 +2,68 @@ package ru.praktikum.stellarburgers.client;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 import ru.praktikum.stellarburgers.model.Tokens;
 
 import static io.restassured.RestAssured.given;
 
 public class Order extends BaseData {
-    public static final String ORDER_PATH = "api/orders/";
-    public String json;
-    IngredientList ingredientList = new IngredientList();
-
-    public String ingredientCreate(){
-        ingredientList.ingredientRequestCreate();
-        json = "{" + ingredientList.orderRequest + "}";
-        return json;
+    @Step("Send GET request to /ingredients")
+    public ValidatableResponse getIngredientsAndReturnResponse(Boolean authorize) {
+        if (authorize) {
+            return given()
+                    .spec(getBaseSpec())
+                    .auth().oauth2(Tokens.getAccessToken())
+                    .when()
+                    .get("ingredients")
+                    .then();
+        } else {
+            return given()
+                    .spec(getBaseSpec())
+                    .when()
+                    .get("ingredients")
+                    .then();
+        }
     }
 
-    @Step("Создание заказа неавторизированного пользователя")
-    public Response createOrderUnauthorized() {
-        return given()
-                .spec(getBaseSpec())
-                .body(json)
-                .post(ORDER_PATH);
+    @Step("Send POST request to /orders")
+    public ValidatableResponse createOrderAndReturnResponse(CreateOrderRequest createOrderRequest, Boolean authorize) {
+        if (authorize) {
+            return given()
+                    .spec(getBaseSpec())
+                    .auth().oauth2(Tokens.getAccessToken())
+                    .body(createOrderRequest.toJsonString())
+                    .when()
+                    .post("orders")
+                    .then();
+        } else {
+            return given()
+                    .spec(getBaseSpec())
+                    .body(createOrderRequest.toJsonString())
+                    .when()
+                    .post("orders")
+                    .then();
+        }
     }
 
-    @Step("Создание заказа авторизированного пользователя")
-    public Response createOrderAuthorized() {
-        return given()
-                .spec(getBaseSpec())
-                .auth().oauth2(Tokens.getAccessToken())
-                .body(json)
-                .post(ORDER_PATH);
-    }
-
-    @Step("Вывод заказов авторизаванного пользователя")
-    public Response getUserOrderAuthorized(){
-        return given()
-                .spec(getBaseSpec())
-                .auth().oauth2(Tokens.getAccessToken())
-                .get(ORDER_PATH);
-    }
-
-    @Step("Вывод заказов неавторизованного пользователя")
-    public Response getUserOrderUnauthorized(){
-        return given()
-                .spec(getBaseSpec())
-                .get(ORDER_PATH);
+    @Step("Send GET request to /orders")
+    public ValidatableResponse getSpecificUserOrdersAndReturnResponse(GetCustomUsersOrders getSpecificUserOrdersRequest, Boolean authorize) {
+        if (authorize) {
+            return given()
+                    .spec(getBaseSpec())
+                    .auth().oauth2(Tokens.getAccessToken())
+                    .body(getSpecificUserOrdersRequest.toJsonString())
+                    .when()
+                    .get("orders")
+                    .then();
+        } else {
+            return given()
+                    .spec(getBaseSpec())
+                    .body(getSpecificUserOrdersRequest.toJsonString())
+                    .when()
+                    .get("orders")
+                    .then();
+        }
     }
 
 }
