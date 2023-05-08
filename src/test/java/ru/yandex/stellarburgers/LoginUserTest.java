@@ -1,96 +1,81 @@
 package ru.yandex.stellarburgers;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
+import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.praktikum.stellarburgers.model.Tokens;
-import ru.praktikum.stellarburgers.model.User;
-import ru.praktikum.stellarburgers.model.UserLogin;
-import ru.praktikum.stellarburgers.client.UserRequest;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import ru.praktikum.stellarburgers.client.UserClient;
+import ru.praktikum.stellarburgers.model.LoginUserRequest;
+import ru.praktikum.stellarburgers.model.RegisterUserRequest;
 
 public class LoginUserTest {
-    private UserRequest userRequest;
-    private User user;
-    private UserLogin userLogin;
+    UserClient userClient;
+    RegisterUserRequest registerUserRequest;
 
-    @Before //создаем случайного пользователя
+    @Before
     public void setUp() {
-        userRequest = new UserRequest();
-        user =new  User().createUser();
-        userLogin = new UserLogin();
-        userRequest.create(user.toString());
-        userRequest.saveToken(userRequest, userLogin, user);
+        userClient = new UserClient();
+        registerUserRequest = RegisterUserRequest.getRandom();
+        userClient.saveUserToken(userClient.registerNewUserAndReturnResponse(registerUserRequest));
     }
 
-    @After //удаляем созданного пользователя
+    @After
     public void tearDown() {
-        JsonElement accessTokenFull = userRequest.login(userLogin.from(user).toString()).thenReturn()
-                .body().as(JsonObject.class).get("accessToken");
-        String accessToken = accessTokenFull.toString().substring(8, 179);
-        if (accessTokenFull != null) {
-            Tokens.setAccessToken(accessToken);
-            userRequest.delete().then().statusCode(202);
-        }
+        userClient.deleteUserAndFlushToken();
     }
 
     @Test
     @DisplayName("Авторизация пользователя")
-    @Description("Тест проверяет возможность авторизации пользователя и вывода в случае успеха accessToken пользователя")
-    public void userCanCreatedAndBeLogIn(){
-        userRequest.login(userLogin.from(user).toString()).then().assertThat()
-                .statusCode(200)
-                .body("accessToken", notNullValue());
+    @Description("Проверяем что возвращается ответ true и статус код 200")
+    public void testLoginUserReturn200True() {
+        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.email, registerUserRequest.password);
+        userClient.loginUserAndReturnResponse(loginUserRequest)
+                .assertThat().body("success", Matchers.equalTo(true))
+                .and()
+                .statusCode(200);
+    }
+
+
+    @Test
+    @DisplayName("Авторизуем пользователя с неверным паролем")
+    @Description("Проверяем что возвращается ответ false и статус код 401")
+    public void testLoginUserWithWrongPasswordReturn401() {
+        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.email, registerUserRequest.password + "_wrong");
+        userClient.loginUserAndReturnResponse(loginUserRequest)
+                .assertThat().body("success", Matchers.equalTo(false),
+                        "message", Matchers.equalTo("email or password are incorrect"))
+                .and()
+                .statusCode(401);
     }
 
     @Test
-    @DisplayName("Авторизация пользователя без пароля")
-    @Description("Тест проверяет появление ошибки в случае указания не всех обязательных полей, без поля password")
-    public void userLoginWithoutRequiredFieldPassword(){
-        UserLogin userLogin = new UserLogin(user.getLogin(), "");
-        userRequest.login(userLogin.toString()).then().assertThat()
-                .statusCode(401)
-                .body("message", equalTo("email or password are incorrect"));
+    @DisplayName("Авторизуем пользователя с неверной почтой")
+    @Description("Проверяем что в отнвете  возвращается false и статус код 401")
+    public void testLoginUserWithWrongEmailReturn401() {
+
+        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.email + " wrong", registerUserRequest.password);
+        userClient.loginUserAndReturnResponse(loginUserRequest)
+                .assertThat().body("success", Matchers.equalTo(false),
+                        "message", Matchers.equalTo("email or password are incorrect"))
+                .and()
+                .statusCode(401);
     }
 
     @Test
-    @DisplayName("Авторизация пользователя без логина")
-    @Description("Тест проверяет появление ошибки в случае указания не всех обязательных полей, без поля email")
-    public void userLoginWithoutRequiredFieldEmail(){
-        UserLogin userLogin = new UserLogin("", user.getPassword());
-        userRequest.login(userLogin.toString()).then().assertThat()
-                .statusCode(401)
-                .body("message", equalTo("email or password are incorrect"));
-    }
+    @DisplayName("Авторизуем незарегистрированного пользователя")
+    @Description("Проверяем что в отнвете  возвращается false и статус код 401")
+    public void testLoginUserWithWrongEmailAndPasswordReturn401() {
+        userClient.deleteUserAndFlushToken();
 
-    @Test
-    @DisplayName("Авторизация пользователя с неверным логином")
-    @Description("Тест проверяет появление ошибки в случае указания неверных регистрационных данных," +
-            " в частности несуществующего email пользователя")
-    public void courierIdIncorrectFieldEmail(){
-        UserLogin userLogin = new UserLogin("123" + user.getLogin(), user.getPassword());
-        userRequest.login(userLogin.toString()).then().assertThat()
-                .statusCode(401)
-                .body("message", equalTo("email or password are incorrect"));
+        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.email, registerUserRequest.password + "_wrong");
+        userClient.loginUserAndReturnResponse(loginUserRequest)
+                .assertThat().body("success", Matchers.equalTo(false),
+                        "message", Matchers.equalTo("email or password are incorrect"))
+                .and()
+                .statusCode(401);
     }
-
-    @Test
-    @DisplayName("Авторизация пользователя с неверным паролем")
-    @Description("Тест проверяет появление ошибки в случае указания неверных регистрационных данных, " +
-            "в частности несуществующего password пользователя")
-    public void courierIdIncorrectFieldPassword(){
-        UserLogin userLogin = new UserLogin(user.getLogin(), user.getPassword() + "123");
-        userRequest.login(userLogin.toString()).then().assertThat()
-                .statusCode(401)
-                .body("message", equalTo("email or password are incorrect"));
-    }
-
 }
 
 

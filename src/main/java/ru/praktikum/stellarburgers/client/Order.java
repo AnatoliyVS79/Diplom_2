@@ -1,8 +1,9 @@
 package ru.praktikum.stellarburgers.client;
 
 import io.qameta.allure.Step;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+import ru.praktikum.stellarburgers.model.CreateOrderRequest;
+import ru.praktikum.stellarburgers.model.GetCustomUsersOrders;
 import ru.praktikum.stellarburgers.model.Tokens;
 
 import static io.restassured.RestAssured.given;

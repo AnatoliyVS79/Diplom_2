@@ -1,85 +1,74 @@
 package ru.yandex.stellarburgers;
 
-import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
+import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import ru.praktikum.stellarburgers.client.Order;
-import ru.praktikum.stellarburgers.model.User;
-import ru.praktikum.stellarburgers.client.UserRequest;
-import ru.praktikum.stellarburgers.model.UserLogin;
+import ru.praktikum.stellarburgers.client.UserClient;
+import ru.praktikum.stellarburgers.model.CreateOrderRequest;
+import ru.praktikum.stellarburgers.model.RegisterUserRequest;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
+@RunWith(Parameterized.class)
 public class CreateOrderTest {
-    private UserRequest userRequest;
-    private User user;
+    private final Boolean authorize;
+    private final Boolean success;
+    private final Boolean checkSuccessResponse;
+    private final Integer code;
+    UserClient userClient;
+    RegisterUserRequest registerUserRequest;
+    ValidatableResponse validatableResponse;
+    CreateOrderRequest createOrderRequest;
     private Order order;
-    String accessToken;
-    private UserLogin userLogin;
 
-    @Before  //создаем случайного пользователя для возможности авторизированного запроса
-    public void setUp(){
+    public CreateOrderTest(Boolean authorize, CreateOrderRequest createOrderRequest, Boolean success, Boolean checkSuccessResponse, Integer code) {
+        this.authorize = authorize;
+        this.createOrderRequest = createOrderRequest;
+        this.success = success;
+        this.checkSuccessResponse = checkSuccessResponse;
+        this.code = code;
+    }
+
+    @Parameterized.Parameters
+    public static Object[][] getData() {
+        return new Object[][]{
+                {true, new CreateOrderRequest(new String[]{"61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f", "61c0c5a71d1f82001bdaaa73"}), true, true, 200},
+                {false, new CreateOrderRequest(new String[]{"61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f", "61c0c5a71d1f82001bdaaa73"}), true, true, 200},
+                {true, new CreateOrderRequest(new String[]{}), true, false, 400},
+                {false, new CreateOrderRequest(new String[]{}), true, false, 400},
+                {true, new CreateOrderRequest(new String[]{"-61c0c5a71d1f82001bdaaa6d", "-61c0c5a71d1f82001bdaaa6f", "-61c0c5a71d1f82001bdaaa73"}), false, false, 500},
+                {false, new CreateOrderRequest(new String[]{"-61c0c5a71d1f82001bdaaa6d", "-61c0c5a71d1f82001bdaaa6f", "-61c0c5a71d1f82001bdaaa73"}), false, false, 500},
+
+        };
+    }
+
+    @Before
+    public void setUp() {
+        userClient = new UserClient();
         order = new Order();
-        userRequest = new UserRequest();
-        user =new  User().createUser();
-        userRequest.create(user.toString());
-        userLogin = new UserLogin();
-        userRequest.saveToken(userRequest, userLogin, user);
+        registerUserRequest = RegisterUserRequest.getRandom();
+        validatableResponse = userClient.registerNewUserAndReturnResponse(registerUserRequest);
+        userClient.saveUserToken(validatableResponse);
     }
 
-    @After  //удаляем созданного пользователя
-    public void tearDown(){
-        if (accessToken != null){
-            userRequest.delete().then().statusCode(202);
+    @After
+    public void tearDown() {
+        userClient.deleteUserAndFlushToken();
+    }
+
+    @Test
+    @DisplayName("Проверка создания заказов")
+    public void createOrderTest() {
+        validatableResponse = order.createOrderAndReturnResponse(createOrderRequest, authorize)
+                .assertThat()
+                .statusCode(code);
+        if (checkSuccessResponse) {
+            validatableResponse.body("success", equalTo(success));
         }
-    }
-
-    @Test
-    @DisplayName("Создание заказа с ингредиентами неавторизированного пользователя")
-    @Description("Тест проверяет, что, несмотря на положительный ответ сервера, " +
-            "поля Владелец(owner) и Время создания(createdAt) не выходят, заказ не создается")
-    public void createOrderUnauthorizedTest(){
-        order.ingredientCreate();
-        order.createOrderUnauthorized().then().assertThat()
-                .statusCode(200)
-                .body("order.createdAt", nullValue())
-                .body("order.owner", nullValue());
-    }
-
-    @Test
-    @DisplayName("Создание заказа с ингредиентами авторизированного пользователя")
-    @Description("Тест проверяет, что, поля Владелец(owner) и Время создания(createdAt) выходят, заказ создается")
-    public void createOrderAuthorizedTest(){
-        order.ingredientCreate();
-        order.createOrderAuthorized().then().assertThat()
-                .statusCode(200)
-                .body("order.createdAt", notNullValue())
-                .body("order.owner", notNullValue());
-    }
-
-    @Test
-    @DisplayName("Создание заказа без ингредиентов авторизированного пользователя")
-    @Description("Тест проверяет возврат ошибки в случае передачи запроса о создании заказа без ингредиентов " +
-            "(у неавторизованного пользователя запрос отрабатывает так же)")
-    public void createOrderWithoutIngredientsTest(){
-        order.json = "{" + "\"ingredients\":[]" + "}";
-        order.createOrderAuthorized().then().assertThat()
-                .statusCode(400)
-                .body("success", equalTo(false))
-                .body("message", equalTo("Ingredient ids must be provided"));
-    }
-
-    @Test
-    @DisplayName("Создание заказа с неверным хешем ингредиентов авторизированного пользователя")
-    @Description("Тест проверяет ошибки в случае указания неверного хеша ингредиента " +
-            "(у неавторизованного пользователя запрос отрабатывает так же)")
-    public void createOrderInvalidIngredientsTest(){
-        IngredientList ingredientList = new IngredientList();
-        ingredientList = ingredientList.getAllIngredients();
-        String ingredientOrder = ingredientList.getData().get(1).get_id();
-        order.json = "{" + "\"ingredients\":[\"" + ingredientOrder + "ghk2\"]}";
-        order.createOrderAuthorized().then().assertThat().statusCode(500);
     }
 }
