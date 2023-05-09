@@ -4,39 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7676d61-d531-4f01-b398-3be9d00a4020" name="Changes" comment="gitignore change">
+    <list default="true" id="f7676d61-d531-4f01-b398-3be9d00a4020" name="Changes" comment="encapsulation principle fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/client/IngredientList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/client/UserRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/CreateOrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/CreateOrderRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/Data.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/GetCustomUsersOrders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/GetCustomUsersOrders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/LoginUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/LoginUserRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/RegisterUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/RegisterUserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/UpdateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/UpdateUserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/UserLogin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/ChangingUserDataTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/GetUserOrderTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/NewUserTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/0422f84f-efe9-426f-b68f-8414fe371c07-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/054e5dff-c57c-4576-ae7d-2c14354b2008-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/116703ff-8d4a-462d-995c-3e682c007a4a-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/3a41d023-259c-4340-bef0-f20f31cbc72b-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/50c7f783-c869-45f9-886c-d4974159e158-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/5137fd22-dd28-47ad-8dab-364afea8a129-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/56878d8b-ae50-4cd9-a5a4-f603e4390a68-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/56ec7721-dca1-4ebc-90b6-86edb9b6ddcc-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/5d691b06-06fe-4b10-b3a3-480a66c9e5d0-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/63637f01-ed82-4887-8256-a9ac81af0599-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/74c124a4-76df-45d3-90a0-bbf8feeb8fe9-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/88154f97-2729-44db-985b-2bf84dde9ee2-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/896de764-bf19-46e3-b412-9cfa2bcc0731-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/9766eb6e-792e-47a9-ab40-616c33768782-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/9e969bba-5e77-433c-825e-2cf34512ea89-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/ba4efdd4-696d-4487-81dd-12bcaff3494d-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/c31d4237-a855-4caa-a693-c699f61d2934-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/dafe2a04-497b-4047-9e7a-5fbdee3d8c0e-result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/allure-results/df077865-fea8-4882-96d4-f882a921625b-result.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/CreateCustomUserOrdersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/CreateCustomUserOrdersTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/LoginUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/LoginUserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -348,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683572273878</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="encapsulation principle fixed">
+      <created>1683652403726</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1683652403726</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -375,7 +354,8 @@
     <MESSAGE value="added RegisterUserRequest" />
     <MESSAGE value="After code review fix" />
     <MESSAGE value="gitignore change" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore change" />
+    <MESSAGE value="encapsulation principle fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="encapsulation principle fixed" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Diplom_2$java_in_Diplom_2.ic" NAME="java in Diplom_2 Coverage Results" MODIFIED="1682525815410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -3,12 +3,12 @@ package ru.praktikum.stellarburgers.model;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class RegisterUserRequest extends Request {
-    private final String email;
+    private final String getEmail;
     private final String password;
     private final String name;
 
     public RegisterUserRequest(String email, String password, String name) {
-        this.email = email;
+        this.getEmail = email;
         this.password = password;
         this.name = name;
     }
@@ -21,7 +21,7 @@ public class RegisterUserRequest extends Request {
     }
 
     public String getEmail() {
-        return email;
+        return getEmail;
     }
 
     public String getPassword() {

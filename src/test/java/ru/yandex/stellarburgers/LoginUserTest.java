@@ -30,7 +30,8 @@ public class LoginUserTest {
     @DisplayName("Авторизация пользователя")
     @Description("Проверяем что возвращается ответ true и статус код 200")
     public void testLoginUserReturn200True() {
-        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.email, registerUserRequest.password);
+        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.getEmail(),
+                registerUserRequest.getPassword());
         userClient.loginUserAndReturnResponse(loginUserRequest)
                 .assertThat().body("success", Matchers.equalTo(true))
                 .and()
@@ -42,7 +43,8 @@ public class LoginUserTest {
     @DisplayName("Авторизуем пользователя с неверным паролем")
     @Description("Проверяем что возвращается ответ false и статус код 401")
     public void testLoginUserWithWrongPasswordReturn401() {
-        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.email, registerUserRequest.password + "_wrong");
+        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.getEmail(),
+                registerUserRequest.getPassword() + "_wrong");
         userClient.loginUserAndReturnResponse(loginUserRequest)
                 .assertThat().body("success", Matchers.equalTo(false),
                         "message", Matchers.equalTo("email or password are incorrect"))
@@ -55,7 +57,8 @@ public class LoginUserTest {
     @Description("Проверяем что в отнвете  возвращается false и статус код 401")
     public void testLoginUserWithWrongEmailReturn401() {
 
-        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.email + " wrong", registerUserRequest.password);
+        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.getEmail() + " wrong",
+                registerUserRequest.getPassword());
         userClient.loginUserAndReturnResponse(loginUserRequest)
                 .assertThat().body("success", Matchers.equalTo(false),
                         "message", Matchers.equalTo("email or password are incorrect"))
@@ -69,7 +72,8 @@ public class LoginUserTest {
     public void testLoginUserWithWrongEmailAndPasswordReturn401() {
         userClient.deleteUserAndFlushToken();
 
-        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.email, registerUserRequest.password + "_wrong");
+        LoginUserRequest loginUserRequest = new LoginUserRequest(registerUserRequest.getEmail(),
+                registerUserRequest.getPassword() + "_wrong");
         userClient.loginUserAndReturnResponse(loginUserRequest)
                 .assertThat().body("success", Matchers.equalTo(false),
                         "message", Matchers.equalTo("email or password are incorrect"))

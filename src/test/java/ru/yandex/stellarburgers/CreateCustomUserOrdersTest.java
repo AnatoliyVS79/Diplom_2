@@ -59,7 +59,7 @@ public class CreateCustomUserOrdersTest {
         for (int i = 0; i < ordersCount; i++) {
             order.createOrderAndReturnResponse(createOrderRequest, true);
         }
-        getCustomUsersOrders = new GetCustomUsersOrders(registerUserRequest.email);
+        getCustomUsersOrders = new GetCustomUsersOrders(registerUserRequest.getEmail());
     }
 
     @After
