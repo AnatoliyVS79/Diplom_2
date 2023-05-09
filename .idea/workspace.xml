@@ -4,32 +4,145 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7676d61-d531-4f01-b398-3be9d00a4020" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="f7676d61-d531-4f01-b398-3be9d00a4020" name="Changes" comment="encapsulation principle fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/RegisterUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/praktikum/stellarburgers/model/RegisterUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/CreateCustomUserOrdersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/CreateCustomUserOrdersTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/LoginUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/stellarburgers/LoginUserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="z1jrybc6" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2OvIGs21SiHVtZkg23NgsBoFQez" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean test" />
+      <command value="mvn allure:serve" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.UserRegisterTest">
+    <configuration name="CreateCustomUserOrdersTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.stellarburgers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.stellarburgers" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.stellarburgers.CreateCustomUserOrdersTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreateOrderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.stellarburgers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.stellarburgers" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.stellarburgers.CreateOrderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.stellarburgers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.stellarburgers" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.stellarburgers.LoginUserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UpdateUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.stellarburgers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.stellarburgers" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.stellarburgers.UpdateUserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRegisterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.stellarburgers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.stellarburgers" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.stellarburgers.UserRegisterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserRegisterTest" />
+        <item itemvalue="JUnit.UpdateUserTest" />
+        <item itemvalue="JUnit.LoginUserTest" />
+        <item itemvalue="JUnit.CreateOrderTest" />
+        <item itemvalue="JUnit.CreateCustomUserOrdersTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -39,6 +152,212 @@
       <option name="presentableId" value="Default" />
       <updated>1682434536511</updated>
     </task>
+    <task id="LOCAL-00001" summary="added file pom.xml">
+      <created>1682440300382</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682440300382</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added BaseData.java Token.java User.java">
+      <created>1682443975309</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682443975309</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added UserLogin.java  UserRequest.java">
+      <created>1682445897421</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682445897421</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added Data.java IngredientList.java">
+      <created>1682448182014</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682448182014</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added Order.java">
+      <created>1682449908117</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682449908117</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added NewUserTest.java">
+      <created>1682496120699</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682496120700</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added LoginUserTest.java">
+      <created>1682500052058</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682500052058</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added ChangingUserDataTest.java">
+      <created>1682504248937</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682504248937</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added CreateOrderTest">
+      <created>1682513388214</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682513388214</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added GetUserOrderTest">
+      <created>1682520060886</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682520060886</updated>
+    </task>
+    <task id="LOCAL-00011" summary="change pom.xml , README.md">
+      <created>1682527803871</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682527803871</updated>
+    </task>
+    <task id="LOCAL-00012" summary="change .gitignore">
+      <created>1682528269131</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682528269131</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added UserRegResponse">
+      <created>1683213916999</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1683213916999</updated>
+    </task>
+    <task id="LOCAL-00014" summary="correction of comments">
+      <created>1683213952251</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1683213952251</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add allure report">
+      <created>1683214223815</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1683214223815</updated>
+    </task>
+    <task id="LOCAL-00016" summary="add allure report">
+      <created>1683214291557</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1683214291557</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added GetCustomUsersOrders">
+      <created>1683561690905</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1683561690905</updated>
+    </task>
+    <task id="LOCAL-00018" summary="added Request and CreateOrderRequest">
+      <created>1683561856488</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1683561856488</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added LoginUserRequest and UpdateUserRequest">
+      <created>1683562281461</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1683562281461</updated>
+    </task>
+    <task id="LOCAL-00020" summary="class change BaseData, CreateOrderTest, Order, Tokens, User, and UserRegisterResponse">
+      <created>1683562525242</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683562525242</updated>
+    </task>
+    <task id="LOCAL-00021" summary="added Utils">
+      <created>1683562907243</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1683562907243</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added RegisterUserRequest">
+      <created>1683567889312</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1683567889312</updated>
+    </task>
+    <task id="LOCAL-00023" summary="After code review fix">
+      <created>1683568126765</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1683568126765</updated>
+    </task>
+    <task id="LOCAL-00024" summary="gitignore change">
+      <created>1683572273878</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1683572273878</updated>
+    </task>
+    <task id="LOCAL-00025" summary="encapsulation principle fixed">
+      <created>1683652403726</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1683652403726</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added file pom.xml" />
+    <MESSAGE value="added BaseData.java Token.java User.java" />
+    <MESSAGE value="added UserLogin.java  UserRequest.java" />
+    <MESSAGE value="added Data.java IngredientList.java" />
+    <MESSAGE value="added Order.java" />
+    <MESSAGE value="added NewUserTest.java" />
+    <MESSAGE value="added LoginUserTest.java" />
+    <MESSAGE value="added ChangingUserDataTest.java" />
+    <MESSAGE value="added CreateOrderTest" />
+    <MESSAGE value="added GetUserOrderTest" />
+    <MESSAGE value="change pom.xml , README.md" />
+    <MESSAGE value="change .gitignore" />
+    <MESSAGE value="added UserRegResponse" />
+    <MESSAGE value="correction of comments" />
+    <MESSAGE value="add allure report" />
+    <MESSAGE value="added GetCustomUsersOrders" />
+    <MESSAGE value="added Request and CreateOrderRequest" />
+    <MESSAGE value="added LoginUserRequest and UpdateUserRequest" />
+    <MESSAGE value="class change BaseData, CreateOrderTest, Order, Tokens, User, and UserRegisterResponse" />
+    <MESSAGE value="added Utils" />
+    <MESSAGE value="added RegisterUserRequest" />
+    <MESSAGE value="After code review fix" />
+    <MESSAGE value="gitignore change" />
+    <MESSAGE value="encapsulation principle fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="encapsulation principle fixed" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Diplom_2$java_in_Diplom_2.ic" NAME="java in Diplom_2 Coverage Results" MODIFIED="1682525815410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
